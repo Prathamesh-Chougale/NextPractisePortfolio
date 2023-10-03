@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { DropdownMenuContent, DropdownMenuItem } from "./dropdown-menu";
+import { DropdownMenuContent, DropdownMenuItem } from "../ui/dropdown-menu";
 import { useTheme } from "next-themes";
 
 const SetTheme = () => {
