@@ -147,7 +147,7 @@
   }
 
   .nav-padding {
-    @apply pt-[98px];
+    @apply pt-[48px];
   }
 
   .paddings {
@@ -193,6 +193,10 @@
   .no-focus {
     @apply focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0 !important;
   }
+}
+
+body{
+  user-select: none;
 }
 
 .frame {
@@ -304,6 +308,12 @@
   scrollbar-width: none; /* Firefox */
 }
  
+.bg-banner{
+  background-image: url('/HeaderBg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-re
+}
 @layer base {
   * {
     @apply border-border;
