@@ -1,14 +1,34 @@
 "use client";
 import { useState } from "react";
-import { Button } from "./ui/button";
-
+import { formUrlForm } from "@/service/SearchQuery";
+import { useSearchParams, useRouter } from "next/navigation";
 const links = ["All", "Next 13", "Frontend", "Backend", "Fullstack"];
 
 const FilterForm = () => {
   const [active, setActive] = useState("All");
+  const searchParams = useSearchParams();
+  const router = useRouter();
   const handleFilter = (link: string) => {
-    {
+    let newUrl = "";
+
+    if (active === link) {
+      setActive("");
+      newUrl = formUrlForm({
+        params: searchParams.toString(),
+        key: "category",
+        value: null,
+      });
+      router.push(newUrl, { scroll: false });
+
+      // useRouter.push(newUrl, undefined, { scroll: false as const });
+    } else {
       setActive(link);
+      newUrl = formUrlForm({
+        params: searchParams.toString(),
+        key: "category",
+        value: link.toLowerCase(),
+      });
+      router.push(newUrl, { scroll: false }); //scroll moves us at top
     }
   };
   return (

@@ -5,7 +5,7 @@ import ChangeTheme from "./theme/ChangeTheme";
 
 const FixedNavbar = () => {
   return (
-    <nav className="flex-center fixed top-0 z-50 w-full border-b-2 border-black-200 py-4 ">
+    <nav className="flex-center fixed top-0 z-50 w-full border-b-2 bg-black border-black-200 py-4 ">
       <div className="flex-between mx-auto w-full max-w-screen-2xl px-6 xs:px-8 sm:px-12">
         <Link href="/">
           <Image

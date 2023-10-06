@@ -11,7 +11,15 @@ export interface Resource {
     category: string;
 }
 
-export async function getProject() {
+interface GetResourcesParams {
+    query: string;
+    category: string;
+    page: string;
+}
+
+export async function getProject(params: GetResourcesParams) {
+    const { query, category, page } = params;
+
     return client.fetch(groq`*[_type == "resource"]{
         title,
         _id,
