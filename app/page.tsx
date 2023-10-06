@@ -37,7 +37,7 @@ export default async function Home() {
               )
             )
           ) : (
-            <div>no resource available</div>
+            <div>no resource found</div>
           )}
         </div>
       </section>
