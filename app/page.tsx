@@ -11,10 +11,9 @@ interface Props {
 }
 
 export default async function Home({ searchParams }: Props) {
-  // console.log(searchParams);
   const resource = await getProject({
     category: searchParams?.category || "",
-    query: "",
+    query: searchParams?.query || "",
     page: "1",
   });
 
@@ -29,29 +28,34 @@ export default async function Home({ searchParams }: Props) {
         <SearchForm />
       </section>
       <FilterForm />
-      <section className="flex-center mt-6 w-full flex-col sm:mt-20">
-        <Header />
-        <div className="mt-12 flex w-full flex-wrap justify-center gap-16 sm:justify-center">
-          {resource?.length > 0 ? (
-            resource.map(
-              (p: Resource & { views: number; category: string }) => (
-                <ResourceCard
-                  key={p._id}
-                  _id={p._id}
-                  title={p.title}
-                  image={p.image}
-                  downloadLink={p.downloadLink}
-                  slug={p.slug}
-                  views={p.views || 0}
-                  category={p.category || "Uncategorized"}
-                />
+      {(searchParams?.query || searchParams?.category) && (
+        <section className="flex-center mt-6 w-full flex-col sm:mt-20">
+          <Header
+            query={searchParams?.query || ""}
+            category={searchParams?.category || ""}
+          />
+          <div className="mt-12 flex w-full flex-wrap justify-center gap-16 sm:justify-center">
+            {resource?.length > 0 ? (
+              resource.map(
+                (p: Resource & { views: number; category: string }) => (
+                  <ResourceCard
+                    key={p._id}
+                    _id={p._id}
+                    title={p.title}
+                    image={p.image}
+                    downloadLink={p.downloadLink}
+                    slug={p.slug}
+                    views={p.views || 0}
+                    category={p.category || "Uncategorized"}
+                  />
+                )
               )
-            )
-          ) : (
-            <div>no resource found</div>
-          )}
-        </div>
-      </section>
+            ) : (
+              <div>no resource found</div>
+            )}
+          </div>
+        </section>
+      )}
     </main>
   );
 }

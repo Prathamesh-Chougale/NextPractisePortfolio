@@ -5,7 +5,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 const links = ["All", "Next 13", "Frontend", "Backend", "Fullstack"];
 
 const FilterForm = () => {
-  const [active, setActive] = useState("All");
+  const [active, setActive] = useState("");
   const searchParams = useSearchParams();
   const router = useRouter();
   const handleFilter = (link: string) => {
@@ -15,8 +15,7 @@ const FilterForm = () => {
       setActive("");
       newUrl = formUrlForm({
         params: searchParams.toString(),
-        key: "category",
-        value: null,
+        keysToRemove: ["category"],
       });
       router.push(newUrl, { scroll: false });
 

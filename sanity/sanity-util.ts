@@ -1,5 +1,6 @@
-import client from "@/client";
+import { client } from "@/client";
 import { groq } from "next-sanity";
+import { buildQuery } from "./buildQuery";
 
 export interface Resource {
     title: string;
@@ -17,10 +18,14 @@ interface GetResourcesParams {
     page: string;
 }
 
-export async function getProject(params: GetResourcesParams) {
-    const { query, category, page } = params;
+export async function getProject({ query, category, page }: GetResourcesParams) {
 
-    return client.fetch(groq`*[_type == "resource"]{
+    return client.fetch(groq`${buildQuery({
+        type: 'resource',
+        query,
+        category,
+        page: parseInt(page),
+    })}{
         title,
         _id,
         downloadLink,
