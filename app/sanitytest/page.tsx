@@ -2,7 +2,7 @@ import { Resource, getProject } from "@/sanity/sanity-util";
 import React from "react";
 
 const sanity = async () => {
-  const projects = await getProject();
+  const projects = await getProject({ query: "", category: "", page: "1" });
   return (
     <div>
       {projects.map((p: Resource) => (
